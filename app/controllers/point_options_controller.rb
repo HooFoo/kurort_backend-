@@ -1,4 +1,4 @@
-class PointOptionsController < ApplicationController
+class PointOptionsController < ApiController
   before_action :set_point_option, only: [:show, :update, :destroy]
 
   # GET /point_options
