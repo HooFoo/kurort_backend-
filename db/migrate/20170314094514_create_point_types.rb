@@ -2,10 +2,11 @@ class CreatePointTypes < ActiveRecord::Migration[5.0]
   def change
     create_table :point_types do |t|
       t.string :name
-      t.belongs_to :point, foreign_key: true
       t.string :icon
 
       t.timestamps
     end
+    add_reference :points, :point_type, index: true
+    add_foreign_key :points, :point_types
   end
 end

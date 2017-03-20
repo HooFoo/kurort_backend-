@@ -27,6 +27,7 @@ gem 'active_model_serializers', '~> 0.10.0.rc1'
 # gem 'rack-cors'
 
 gem 'carrierwave'
+gem 'mini_magick'
 gem 'pg'
 
 group :production do

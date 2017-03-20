@@ -161,6 +161,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
+    mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     nio4r (2.0.0)
@@ -257,6 +258,7 @@ DEPENDENCIES
   dotenv-rails
   letter_opener
   listen (~> 3.0.5)
+  mini_magick
   omniauth
   pg
   puma (~> 3.0)

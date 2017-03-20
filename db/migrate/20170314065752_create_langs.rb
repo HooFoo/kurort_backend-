@@ -5,5 +5,7 @@ class CreateLangs < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_reference :users, :lang, index: true
+    add_foreign_key :users, :langs
   end
 end
