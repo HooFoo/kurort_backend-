@@ -8,5 +8,7 @@ class CreatePointTypes < ActiveRecord::Migration[5.0]
     end
     add_reference :points, :point_type, index: true
     add_foreign_key :points, :point_types
+    add_reference :point_options, :point_type, index: true
+    add_foreign_key :point_options, :point_types
   end
 end

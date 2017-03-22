@@ -54,11 +54,11 @@ ActiveRecord::Schema.define(version: 20170314094514) do
 
   create_table "point_options", force: :cascade do |t|
     t.string   "name"
-    t.string   "type"
-    t.integer  "point_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["point_id"], name: "index_point_options_on_point_id", using: :btree
+    t.string   "type_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "point_type_id"
+    t.index ["point_type_id"], name: "index_point_options_on_point_type_id", using: :btree
   end
 
   create_table "point_types", force: :cascade do |t|
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20170314094514) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "point_options", "points"
+  add_foreign_key "point_options", "point_types"
   add_foreign_key "points", "langs"
   add_foreign_key "points", "point_types"
   add_foreign_key "points", "users"
