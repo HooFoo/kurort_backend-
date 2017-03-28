@@ -1,17 +1,3 @@
-<template lang="pug">
-.row
-  .col.s12.search-wrapper( flex=true layout='row' )
-    i.material-icons search
-    input.search-box( name='searchField' )
-</template>
-
-<script>
-    export default {
-        name: 'search-box'
-    }
-</script>
-
-<style lang="scss">
 .search-wrapper {
   position: relative;
 
@@ -32,4 +18,3 @@
     top: 11px;
   }
 }
-</style>
