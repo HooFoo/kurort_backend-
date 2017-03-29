@@ -14,7 +14,8 @@
     "vue-resource": "^1.2.1",
     "vue-router": "^2.2.0",
     "vue2-google-maps": "^0.7.0",
-    "vue-auth": "^2.0.0-alpha.1"
+    "vue-auth": "^2.0.0-alpha.1",
+    "vuex": "^2.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

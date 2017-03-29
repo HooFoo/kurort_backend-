@@ -11,5 +11,8 @@
     "build": "cd client && npm install && npm run build && cd ..",
     "deploy": "cp -a client/dist/. public/",
     "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+  },
+  "dependencies": {
+    "vuex": "^2.2.1"
   }
 }

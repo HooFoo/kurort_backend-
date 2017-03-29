@@ -12,7 +12,7 @@
 
 <script>
   import { mapState, mapGetters } from 'vuex'
-  import SidenavLoader from './SidenavLoader'
+  import SidenavLoader from '../SidenavLoader/SidenavLoader.vue'
 
   export default {
     name: 'user-login',
