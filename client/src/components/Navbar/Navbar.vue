@@ -14,4 +14,3 @@
     name: 'navbar'
   }
 </script>
-<style lang="scss" src="./NavBar.scss"></style>
