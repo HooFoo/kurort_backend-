@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   resources :point_types
   resources :point_options
   resources :points

@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :points
   belongs_to :lang
   has_one :user_profile
+  has_many :comments
 
   def to_s
     email
