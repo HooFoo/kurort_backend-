@@ -25,8 +25,6 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new webpack.DefinePlugin({
       'process.env': config.dev.env,
-      'API_URL': JSON.stringify(process.env.API_URL),
-      'GMAP_KEY': JSON.stringify(process.env.GMAP_KEY)
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),

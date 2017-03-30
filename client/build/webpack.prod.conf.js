@@ -30,11 +30,6 @@ var webpackConfig = merge(baseWebpackConfig, {
       'process.env': env
     }),
     new webpack.EnvironmentPlugin(['API_URL','GMAP_KEY']),
-    new webpack.DefinePlugin({
-      'process.env': config.dev.env,
-      'API_URL': JSON.stringify(process.env.API_URL),
-      'GMAP_KEY': JSON.stringify(process.env.GMAP_KEY)
-    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false

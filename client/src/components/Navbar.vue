@@ -14,3 +14,8 @@
     name: 'navbar'
   }
 </script>
+<style lang="scss">
+  .nav-wrapper {
+    text-align: center;
+  }
+</style>

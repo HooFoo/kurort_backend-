@@ -22,9 +22,9 @@
 <script>
   import { mapGetters, mapState } from 'vuex'
 
-  import UserLogin from '../Login/UserLogin.vue'
-  import UserRegister from '../Register/UserRegister.vue'
-  import SidenavLoader from '../SidenavLoader/SidenavLoader.vue'
+  import UserLogin from './UserLogin'
+  import UserRegister from './UserRegister'
+  import SidenavLoader from './SidenavLoader'
 
   export default {
     name: 'user-widget',
