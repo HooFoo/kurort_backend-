@@ -65,7 +65,7 @@ export default {
       commit('loading');
       let email = state.email;
       let token = state.token;
-      Vue.http.post('users/sign_out.json', { user_email: email, user_token: token }).then(response => {
+      Vue.http.delete('users/sign_out.json', { user_email: email, user_token: token }).then(response => {
         clearAuthData();
         commit('logout');
         commit('cancelLoading');
