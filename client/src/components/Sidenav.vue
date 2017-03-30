@@ -49,7 +49,7 @@
   }
 </script>
 <style lang="scss">
-  $primary-color: #3F51B5;
+  @import '../assets/stylesheets/variables';
 
   .sign-up-submit {
     width: 60%;
