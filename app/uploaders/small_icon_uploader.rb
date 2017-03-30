@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class IconsUploader < AppBaseUploader
+class SmallIconUploader < AppBaseUploader
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -11,12 +11,9 @@ class IconsUploader < AppBaseUploader
   # end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
-  #
-  def scale(width, height)
-      process :scale => [128,128]
-  end
 
+  #
+   process :resize_to_fit => [128, 128]
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process :resize_to_fit => [50, 50]
