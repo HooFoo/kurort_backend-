@@ -1,56 +1,52 @@
 <template lang="pug">
-  div
-    div( v-bind:class='{row: 1, hide: !authLoading }' )
-      sidenav-loader
-    div( v-bind:class='{row: 1, hide: authLoading }' )
-      div.col.sm12( v-if='authenticated' )
-        h5.white-text {{ user.email }}
-        button.btn( 'v-on:click'='logout' ) Logout
-      div( v-else )
-        .col.s12.login-form
-          ul.tabs.indigo
-            li.tab.col.s6
-              a.active.white-text( href='#login-form' )
-                | Login
-            li.tab.col.s6
-              a.white-text( href='#sign-up-form' )
-                | Sign up
-        #login-form.col.s12
-          user-login
-        #sign-up-form.col.s12
-          user-register
+  div.row
+    div.col.sm12( v-if='authenticated' )
+      h5.white-text {{ user.email }}
+      button.btn( 'v-on:click'='logout' ) Logout
+    div( v-else )
+      .col.s12.login-form
+        ul.tabs.indigo
+          li.tab.col.s6
+            a.active.white-text( href='#login-form' )
+              | Login
+          li.tab.col.s6
+            a.white-text( href='#sign-up-form' )
+              | Sign up
+      user-login
+      user-register
 </template>
 <script>
   /* global $ */
-  import { mapGetters, mapState } from 'vuex'
+  import { mapState } from 'vuex'
 
   import UserLogin from './UserLogin'
   import UserRegister from './UserRegister'
-  import SidenavLoader from './SidenavLoader'
 
   export default {
     name: 'user-widget',
     components: {
       'user-login': UserLogin,
-      'user-register': UserRegister,
-      'sidenav-loader': SidenavLoader
+      'user-register': UserRegister
     },
-    computed: {
-      ...mapState({
-        user: state => state.auth.user,
-        authLoading: state => state.auth.authLoading
-      }),
-      ...mapGetters(['authenticated']),
-      email () {
-        return this.user.email
-      }
+    created () {
+      this.$auth.fetch().then(user => {
+        this.$store.commit('login', user)
+      })
     },
     updated () {
       $(this.$el).find('.tabs').tabs()
     },
+    computed: {
+      ...mapState({
+        user: state => state.auth.user
+      }),
+      authenticated () {
+        return this.user !== null
+      }
+    },
     methods: {
       logout () {
-        this.$store.dispatch('logout')
+        this.$auth.logout().then(res => this.$store.commit('logout'))
       }
     }
   }

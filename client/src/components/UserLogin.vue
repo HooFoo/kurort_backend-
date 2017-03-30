@@ -1,17 +1,19 @@
 <template lang="pug">
-  form.user-form( novalidate=true 'v-on:submit.prevent'='submit')
-    .error( v-if='hasError') {{ errorMsg }}
-    .input-field
-      label(for='email') Email
-      input#email.validate( name='email' type='text' v-model='email' )
-    .input-field
-      label(for='password') Password
-      input#password.validate( name='password' type='password' v-model='password' )
-    input.btn( type='submit' value='Login' )
+  #login-form.col.s12
+    sidenav-loader( v-bind:class="{ hide: !loading }" )
+    .error( v-if="hasError" ) {{ error }}
+    form.user-form( v-on:submit.prevent="submit" v-bind:class="{ hide: loading }" novalidate )
+      .error( v-if="hasError") {{ errorMsg }}
+      .input-field
+        input#email.validate( name="email" type="text" v-model="email" )
+        label( for="email" ) Email
+      .input-field
+        input#password.validate( name="password" type="password" v-model="password" )
+        label(for="password") Password
+      input.btn( type="submit" value="Login" v-bind:disabled="!this.email && !this.password")
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import SidenavLoader from './SidenavLoader'
 
   export default {
@@ -22,26 +24,30 @@
     data () {
       return {
         email: '',
-        password: ''
+        password: '',
+        error: '',
+        loading: false
       }
     },
     computed: {
-      ...mapState({
-        errorMsg: state => state.auth.loginErrorMsg
-      }),
       hasError () {
-        return !this.loginErrorMsg
+        return !!this.error
       }
     },
     methods: {
       submit () {
+        this.loading = true
         const data = {
-          user: {
-            email: this.email,
-            password: this.password
-          }
+          email: this.email,
+          password: this.password
         }
-        this.$store.dispatch('login', data)
+        this.$auth.login(data).then(
+          user => { this.$store.commit('login', user) },
+          error => {
+            console.log(error)
+            this.error = error
+          }
+        ).catch().then(() => { this.loading = false })
       }
     }
   }

@@ -4,9 +4,6 @@
 </template>
 <script>
   export default {
-    name: 'app',
-    created () {
-      this.$store.dispatch('checkAuth')
-    }
+    name: 'app'
   }
 </script>

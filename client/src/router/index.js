@@ -8,6 +8,7 @@ export default new Router({
   routes: [
     {
       path: '/',
+      meta: { auth: false },
       name: 'Index',
       component: Index
     }
