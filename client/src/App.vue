@@ -1,10 +1,11 @@
 <template lang="pug">
-  router-view
+  #app
+    router-view
 </template>
 <script>
   export default {
     name: 'app',
-    created() {
+    created () {
       this.$store.dispatch('checkAuth')
     }
   }

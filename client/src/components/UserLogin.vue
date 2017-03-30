@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import { mapState, mapGetters } from 'vuex'
+  import { mapState } from 'vuex'
   import SidenavLoader from './SidenavLoader'
 
   export default {
@@ -19,7 +19,7 @@
     components: {
       'sidenav-loader': SidenavLoader
     },
-    data() {
+    data () {
       return {
         email: '',
         password: ''
@@ -29,12 +29,12 @@
       ...mapState({
         errorMsg: state => state.auth.loginErrorMsg
       }),
-      hasError: function() {
+      hasError () {
         return !this.loginErrorMsg
       }
     },
     methods: {
-      submit() {
+      submit () {
         const data = {
           user: {
             email: this.email,

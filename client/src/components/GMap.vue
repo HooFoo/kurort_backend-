@@ -5,17 +5,19 @@
 </template>
 <script>
   export default {
-    data() {
+    data () {
       return {
         center: { lat: 55.75370903771494, lng: 37.61981338262558 },
         zoom: 13
       }
     },
-    created() {
+    created () {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position)=>
+        navigator.geolocation.getCurrentPosition(position => {
           this.center = { lat: position.coords.latitude, lng: position.coords.longitude }
-        )
+          return
+        })
+        return this.center
       }
     }
   }

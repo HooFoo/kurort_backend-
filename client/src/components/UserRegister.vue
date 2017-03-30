@@ -25,7 +25,7 @@
     components: {
       'sidenav-loader': SidenavLoader
     },
-    data() {
+    data () {
       return {
         username: '',
         email: '',
@@ -37,12 +37,12 @@
       ...mapState({
         errorMsg: state => state.auth.registerErrorMsg
       }),
-      hasError: function() {
+      hasError: function () {
         return !!this.errorMsg
       }
     },
     methods: {
-      submit() {
+      submit () {
         const data = {
           user: {
             username: this.username,

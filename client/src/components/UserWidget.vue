@@ -21,6 +21,7 @@
           user-register
 </template>
 <script>
+  /* global $ */
   import { mapGetters, mapState } from 'vuex'
 
   import UserLogin from './UserLogin'
@@ -40,15 +41,15 @@
         authLoading: state => state.auth.authLoading
       }),
       ...mapGetters(['authenticated']),
-      email() {
-        return this.user.email;
+      email () {
+        return this.user.email
       }
     },
-    updated() {
+    updated () {
       $(this.$el).find('.tabs').tabs()
     },
     methods: {
-      logout() {
+      logout () {
         this.$store.dispatch('logout')
       }
     }

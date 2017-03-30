@@ -1,20 +1,22 @@
-import Vue from 'vue';
-import * as VueGoogleMaps from 'vue2-google-maps';
+import Vue from 'vue'
+import * as VueGoogleMaps from 'vue2-google-maps'
 import VueResource from 'vue-resource'
-
-console.log(process.env);
 
 Vue.use(VueGoogleMaps, {
   load: {
+    /* global GMAP_KEY */
+    /* eslint no-undef: "error" */
     key: GMAP_KEY,
     v: '3.26',
     libraries: 'weather,geometry,visualization'
   }
-});
+})
 
 Vue.use(VueResource)
-Vue.http.options.root = API_URL;
-Vue.http.options.xhr = { withCredentials: true };
-Vue.http.options.emulateJSON = true;
+/* global API_URL */
+/* eslint no-undef: "error" */
+Vue.http.options.root = API_URL
+Vue.http.options.xhr = { withCredentials: true }
+Vue.http.options.emulateJSON = true
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
