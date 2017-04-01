@@ -27,7 +27,6 @@
     },
     data () {
       return {
-        username: '',
         email: '',
         password: '',
         passwordConfirmation: '',
@@ -51,6 +50,7 @@
           email: this.email,
           password: this.password,
           password_confirmation: this.passwordConfirmation
+
         }
         this.loading = true
         this.$auth.register(data)

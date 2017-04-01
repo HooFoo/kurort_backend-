@@ -38,6 +38,31 @@ class PointsController < ApiController
     @point.destroy
   end
 
+  def user_points
+    begin
+      user = User.find(params[:user_id])
+      @points = user.points
+    rescue
+      @points = []
+    end
+    render json: @points
+  end
+
+  def my_points
+    @user = current_user
+    if @user.nil?
+      render json: []
+    else
+      render json: @user.points
+    end
+  end
+
+  def points_in_rect
+    rect = params[:rect]
+    @points = Point.get_rect(rect)
+    render json: @points
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_point

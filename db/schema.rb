@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330131038) do
+ActiveRecord::Schema.define(version: 20170401125051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,14 @@ ActiveRecord::Schema.define(version: 20170330131038) do
     t.index ["user_id"], name: "index_points_on_user_id", using: :btree
   end
 
+  create_table "user_profile_point_types", force: :cascade do |t|
+    t.integer "user_profile_id"
+    t.integer "point_type_id"
+    t.boolean "enabled"
+    t.index ["point_type_id"], name: "index_user_profile_point_types_on_point_type_id", using: :btree
+    t.index ["user_profile_id"], name: "index_user_profile_point_types_on_user_profile_id", using: :btree
+  end
+
   create_table "user_profiles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -144,6 +152,8 @@ ActiveRecord::Schema.define(version: 20170330131038) do
   add_foreign_key "points", "langs"
   add_foreign_key "points", "point_types"
   add_foreign_key "points", "users"
+  add_foreign_key "user_profile_point_types", "point_types"
+  add_foreign_key "user_profile_point_types", "user_profiles"
   add_foreign_key "user_profiles", "users"
   add_foreign_key "users", "langs"
 end

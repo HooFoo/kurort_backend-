@@ -38,6 +38,24 @@ class CommentsController < ApplicationController
     @comment.destroy
   end
 
+  def my
+    user = current_user
+    if user.nil?
+      render json: []
+    else
+      render json: user.attachments
+    end
+  end
+
+  def for_point
+    begin
+      @point = Point.find params[:point_id]
+    rescue
+      @point = Point.new
+    end
+    render json: @point.comments
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment

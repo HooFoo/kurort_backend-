@@ -8,13 +8,21 @@ class User < ApplicationRecord
   # # :confirmable, :lockable, :timeoutable and :omniauthable
   # devise :database_authenticatable, :registerable,
   #        :recoverable, :rememberable, :trackable, :validatable
-  has_many :points
+  has_many :points, dependent: :destroy
   belongs_to :lang
-  has_one :user_profile
-  has_many :comments
+  has_one :user_profile, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
+  after_create :create_profile
 
   def to_s
     email
+  end
+
+  private
+
+  def create_profile
+    create_user_profile
   end
 end
 

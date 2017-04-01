@@ -1,14 +1,41 @@
 Rails.application.routes.draw do
-  resources :attachments
-  resources :comments
+  if Rails.env == :production
+    default_url_options :host => "mysterious-woodland-36064.herokuapp.com"
+  else
+    default_url_options :host => "localhost:3000"
+  end
+
+  scope '/users', module: :users  do
+    get 'current'
+    get 'info/:id', action: 'info', as: :user
+  end
+
+
+  resources :attachments do
+    collection do
+      get 'for_point/:point_id', action: 'for_point'
+      get 'for_comment/:comment_id', action: 'for_comment'
+    end
+  end
+  resources :comments do
+    collection do
+      get 'for_point/:point_id', action: 'for_point'
+      get 'my', action: 'my'
+    end
+  end
   resources :point_types
   resources :point_options
-  resources :points
+  resources :points do
+    collection do
+      get 'user_points/:user_id', action: 'user_points'
+      get 'my_points', action: 'my_points'
+      get 'in', action: 'points_in_rect'
+    end
+  end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :langs
   resources :user_profiles
-  #mount_devise_token_auth_for 'User', at: 'auth'
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   devise_scope :user do
     post 'users/auth', to: 'users/sessions#auth'

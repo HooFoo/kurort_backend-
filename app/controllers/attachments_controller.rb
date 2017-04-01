@@ -38,6 +38,24 @@ class AttachmentsController < ApplicationController
     @attachment.destroy
   end
 
+  def for_point
+    begin
+      @point = Point.find params[:point_id]
+    rescue
+      @point = Point.new
+    end
+    render json: @point.attachments
+  end
+
+  def for_comment
+    begin
+      @comment = Comment.find params[:comment_id]
+    rescue
+      @comment = Comment.new
+    end
+    render json: @comment.attachments
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_attachment

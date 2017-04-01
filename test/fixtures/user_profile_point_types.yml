@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_profile: one
+  point_type: one
+  enabled: false
+
+two:
+  user_profile: two
+  point_type: two
+  enabled: false
