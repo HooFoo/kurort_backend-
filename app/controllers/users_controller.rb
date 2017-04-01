@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  acts_as_token_authentication_handler_for User, fallback: :none, only: [:current]
 
   def current
     @user = current_user

@@ -2,10 +2,8 @@
 
 one:
   name: MyString
-  point: one
   icon: MyString
 
 two:
   name: MyString
-  point: two
   icon: MyString

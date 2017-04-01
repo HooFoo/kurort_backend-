@@ -8,8 +8,8 @@ export default {
   mutations: {
     login (state, payload) {
       state.user = {
-        email: payload.email,
-        id: payload.id
+        email: payload.attributes.email,
+        id: payload.attributes.id
       }
     },
     logout (state) {

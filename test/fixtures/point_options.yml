@@ -2,10 +2,6 @@
 
 one:
   name: MyString
-  type: 
-  point: one
 
 two:
   name: MyString
-  type: 
-  point: two
