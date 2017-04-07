@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import SidenavLoader from './SidenavLoader'
+  import SidenavLoader from './sidenav_loader'
 
   export default {
     name: 'user-register',

@@ -37,8 +37,8 @@
 </template>
 
 <script>
-  import UserWidget from './UserWidget'
-  import SearchBox from './SearchBox'
+  import UserWidget from './user_widget'
+  import SearchBox from './search_box'
 
   export default {
     name: 'sidenav',

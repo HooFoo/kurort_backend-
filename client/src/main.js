@@ -8,7 +8,7 @@ import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
 import './assets/stylesheets/app.scss'
 
-import App from './App'
+import App from './app'
 import router from './router'
 import store from './store'
 

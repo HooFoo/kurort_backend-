@@ -7,9 +7,9 @@
 
 
 <script>
-  import Navbar from './Navbar'
-  import Sidenav from './Sidenav'
-  import GMap from './GMap'
+  import Navbar from './navbar'
+  import Sidenav from './sidenav'
+  import GMap from './g_map'
 
   export default {
     name: 'index',

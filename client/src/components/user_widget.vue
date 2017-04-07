@@ -19,8 +19,8 @@
   /* global $ */
   import { mapState } from 'vuex'
 
-  import UserLogin from './UserLogin'
-  import UserRegister from './UserRegister'
+  import UserLogin from './user_login'
+  import UserRegister from './user_register'
 
   export default {
     name: 'user-widget',

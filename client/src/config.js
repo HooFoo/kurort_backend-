@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VueResource from 'vue-resource'
-import Auth from './services/auth'
+import VueAuth from './plugins/vue_auth'
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -14,7 +14,7 @@ Vue.use(VueGoogleMaps, {
 })
 
 Vue.use(VueResource)
-Vue.use(Auth)
+Vue.use(VueAuth)
 /* global API_URL */
 /* eslint no-undef: "error" */
 Vue.http.options.root = API_URL
