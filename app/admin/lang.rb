@@ -2,7 +2,7 @@ ActiveAdmin.register Lang do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-  permit_params :name, :icon
+  permit_params :name, :icon, :key
 #
 # or
 #

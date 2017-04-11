@@ -3,8 +3,8 @@ class AttachmentShortSerializer < BaseSerializer
 
   def link
     {
-        link: object.link.url,
-        thumb: object.link.thumb.url
+        link: asset_host+object.link.url,
+        thumb: asset_host+object.link.thumb.url
     }
   end
 end

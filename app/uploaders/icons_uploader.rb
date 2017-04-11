@@ -13,10 +13,7 @@ class IconsUploader < AppBaseUploader
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #
-  def scale(width, height)
-      process :scale => [128,128]
-  end
-
+  process :resize_to_fit => [128,128]
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process :resize_to_fit => [50, 50]

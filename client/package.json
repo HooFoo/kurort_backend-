@@ -14,7 +14,11 @@
   },
   "dependencies": {
     "@websanova/vue-auth": "^2.8.2-beta",
+    "camelize": "^1.0.0",
+    "decamelize-keys": "^1.1.0",
+    "scriptjs": "^2.5.8",
     "vue": "^2.2.2",
+    "vue-i18n": "^6.0.0",
     "vue-material": "^0.7.1",
     "vue-resource": "^1.2.1",
     "vue-router": "^2.2.0",

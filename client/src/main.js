@@ -8,6 +8,7 @@ import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
 import './assets/stylesheets/app.scss'
 
+import i18n from './i18n'
 import App from './app'
 import router from './router'
 import store from './store'
@@ -17,6 +18,7 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   template: '<App/>',
   components: { App }
 })

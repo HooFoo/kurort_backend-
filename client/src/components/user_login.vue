@@ -6,14 +6,15 @@
       .error( v-if="hasError") {{ errorMsg }}
       .input-field
         input#email.validate( name="email" type="text" v-model="email" )
-        label( for="email" ) Email
+        label( for="email" ) {{ $t('activerecord.attributes.user.email') }}
       .input-field
         input#password.validate( name="password" type="password" v-model="password" )
-        label(for="password") Password
-      input.btn( type="submit" value="Login" v-bind:disabled="!this.email && !this.password")
+        label(for="password") {{ $t('activerecord.attributes.user.password') }}
+      input.btn( type="submit" value="Login" v-bind:value="$t('devise.sessions.new.sign_in')" )
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   import SidenavLoader from './sidenav_loader'
 
   export default {
@@ -35,6 +36,7 @@
       }
     },
     methods: {
+      ...mapActions(['login']),
       submit () {
         this.loading = true
         const data = {
@@ -42,11 +44,10 @@
           password: this.password
         }
         this.$auth.login(data).then(
-          user => { this.$store.commit('login', user) },
-          error => {
-            console.log(error)
-            this.error = error
-          }
+          user => {
+            this.login(user)
+          },
+          error => { this.error = error }
         ).catch().then(() => { this.loading = false })
       }
     }
