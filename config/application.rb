@@ -30,6 +30,7 @@ module KurortBackend
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
     config.middleware.use Rack::MethodOverride
+    config.middleware.use I18n::JS::Middleware
 
     config.app_generators.scaffold_controller = :scaffold_controller
 

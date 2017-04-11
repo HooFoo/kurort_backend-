@@ -12,24 +12,24 @@
             span.badge
               i.material-icons.more expand_more
               i.material-icons.less expand_less
-            | Map
+            | {{ $t('map') }}
           div.collapsible-body
             ul
               li
-                a( href='#' )
+                a( href="#" )
                   i.material-icons my_location
-                  | My position
+                  | {{ $t('my_position') }}
               li
-                a( href='#' )
+                a( href="#" )
                   i.material-icons add_location
-                  | Add point
+                  | {{ $t('add_point') }}
         li
           div.collapsible-header.indigo
             i.material-icons chat
             span.badge
               i.material-icons.more expand_more
               i.material-icons.less expand_less
-            | Chat
+            | {{ $t('chat') }}
           div.collapsible-body
 
     div.adwords-area

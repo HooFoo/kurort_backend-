@@ -4,18 +4,22 @@ const LOGOUT_METHOD = 'delete'
 const REGISTER_URL = 'users.json'
 const CURRENT_USER_URL = 'users/current.json'
 
-let http
+let http, authData
 
 class AuthService {
   constructor (httpService) {
     http = httpService
+    authData = getAuthData()
+    Object.defineProperty(this, 'authData', {
+      get: () => authData
+    })
   }
 
   login (credentials) {
     return new Promise((resolve, reject) => {
       http.post(LOGIN_URL, userRequestData(credentials)).then(response => {
         let user = response.body.data
-        saveAuthData(user.attributes.email, user.attributes['authentication-token'])
+        saveAuthData(user.attributes.email, user.attributes.authenticationToken)
         resolve(user)
       }, response => {
         reject(response.body.error)
@@ -27,7 +31,7 @@ class AuthService {
 
   logout () {
     return new Promise((resolve) => {
-      http[LOGOUT_METHOD](LOGOUT_URL, getAuthData()).then(response => {
+      http[LOGOUT_METHOD](LOGOUT_URL, this.authData).then(response => {
         clearAuthData()
         resolve()
       })
@@ -38,7 +42,7 @@ class AuthService {
     return new Promise((resolve, reject) => {
       http.post(REGISTER_URL, userRequestData(data)).then(response => {
         let user = response.body.data
-        saveAuthData(user.attributes.email, user.attributes['authentication-token'])
+        saveAuthData(user.attributes.email, user.attributes.authenticationToken)
         resolve(user)
       }, response => {
         reject(response.body.errors)
@@ -48,11 +52,7 @@ class AuthService {
 
   fetch (data) {
     return new Promise((resolve) => {
-      let authData = getAuthData()
-      if (!authData.email && !authData.token) {
-        return
-      }
-      http.get(CURRENT_USER_URL, authData).then(response => {
+      http.get(CURRENT_USER_URL, this.authData).then(response => {
         if (response.body !== null) {
           resolve(response.body.data)
         }
@@ -70,6 +70,7 @@ const userRequestData = function (credentials) {
 const saveAuthData = function (email, token) {
   localStorage.setItem('email', email)
   localStorage.setItem('token', token)
+  authData = { email, token }
 }
 
 const getAuthData = function getAuthData () {
@@ -82,6 +83,7 @@ const getAuthData = function getAuthData () {
 const clearAuthData = function () {
   localStorage.removeItem('token')
   localStorage.removeItem('email')
+  authData = null
 }
 
 export default AuthService

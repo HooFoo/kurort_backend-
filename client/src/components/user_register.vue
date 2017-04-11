@@ -4,17 +4,19 @@
     form.user-form( "v-on:submit.prevent"="submit" v-bind:class="{ hide: loading }" novalidate )
       .input-field
         input#email.user-form-input( name="email", type="text" v-model="email" v-bind:class="{ invalid: errors.email }" )
-        label( for="email" v-bind:data-error="errors.email" ) Email
+        label( for="email" v-bind:data-error="errors.email" ) {{ $t('activerecord.attributes.user.email') }}
       .input-field
         input#password.user-form-input( name="password", type="password" v-model="password" v-bind:class="{ invalid: errors.password }" )
-        label( for="password" v-bind:data-error="errors.password" ) Password
+        label( for="password" v-bind:data-error="errors.password" ) {{ $t('activerecord.attributes.user.password') }}
       .input-field
         input#password_confirmation.user-form-input( name="password_confirmation" type="password" v-model="passwordConfirmation" v-bind:class="{ invalid: errors.passwordConfirmation }" )
-        label( for="password_confirmation" v-bind:data-error="errors.passwordConfirmation" ) Password confirmation
-      input.btn( type="submit", value="Register" )
+        label( for="password_confirmation" v-bind:data-error="errors.passwordConfirmation" )
+          | {{ $t('activerecord.attributes.user.password_confirmation') }}
+      input.btn( type="submit", v-bind:value="$t('devise.registrations.new.sign_up')" )
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   import SidenavLoader from './sidenav_loader'
 
   export default {
@@ -41,22 +43,23 @@
       Materialize.updateTextFields()
     },
     methods: {
+      ...mapActions(['login']),
       submit () {
         let data = {
           email: this.email,
           password: this.password,
-          password_confirmation: this.passwordConfirmation
-
+          password_confirmation: this.passwordConfirmation,
+          lang_id: this.$store.state.lang.id
         }
         this.loading = true
         this.$auth.register(data)
           .then(user => {
-            this.$store.commit('login', user)
+            this.login(user)
           }, errors => {
             if (errors) {
-              this.errors.email = errors.email ? errors.email[ 0 ] : null
-              this.errors.password = errors.password ? errors.password[ 0 ] : null
-              this.errors.passwordConfirmation = errors.password_confirmation ? errors.password_confirmation[ 0 ] : null
+              ['email', 'password', 'passwordConfirmation'].forEach((attr) => {
+                this.errors[attr] = errors[attr] ? errors[attr][0] : null
+              })
             }
           }).catch().then(() => { this.loading = false })
       }

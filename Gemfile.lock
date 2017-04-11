@@ -104,6 +104,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.1.2)
     domain_name (0.5.20170223)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.0)
@@ -127,6 +128,8 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.8.1)
+    i18n-js (3.0.0)
+      i18n (~> 0.6, >= 0.6.6)
     inherited_resources (1.7.0)
       actionpack (>= 3.2, < 5.1)
       has_scope (~> 0.6)
@@ -278,8 +281,10 @@ DEPENDENCIES
   carrierwave
   cloudinary
   devise
+  devise-i18n
   dotenv-rails
   foreman
+  i18n-js
   letter_opener
   listen (~> 3.0.5)
   omniauth

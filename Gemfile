@@ -7,6 +7,7 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'puma', '~> 3.0'
 
 gem 'devise'
+gem 'devise-i18n'
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 gem 'omniauth'
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
@@ -29,7 +30,7 @@ gem 'rack-cors'
 gem 'carrierwave'
 gem 'rmagick', '~> 2.13.1'
 gem 'pg'
-
+gem 'i18n-js'
 
 group :production do
   gem 'cloudinary'

@@ -15,7 +15,6 @@
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
           this.center = { lat: position.coords.latitude, lng: position.coords.longitude }
-          return
         })
         return this.center
       }

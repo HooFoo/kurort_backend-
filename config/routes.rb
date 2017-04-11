@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     collection do
       get 'user_points/:user_id', action: 'user_points'
       get 'my_points', action: 'my_points'
-      get 'in', action: 'points_in_rect'
+      post 'in', action: 'points_in_rect'
     end
   end
   devise_for :admin_users, ActiveAdmin::Devise.config

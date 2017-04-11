@@ -1,5 +1,5 @@
 class LangSerializer < BaseSerializer
-  attributes :name, :icon
+  attributes :name, :icon, :key
 
   def icon
     object.icon.url

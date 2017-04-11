@@ -19,9 +19,9 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  map: "Map"
-  chat: "Chat"
-  my_position: "My position"
-  add_point: "Add point"
-  log_out: "Log out"
+ru:
+  map: "Карта"
+  chat: "Чат"
+  my_position: "Моя позиция"
+  add_point: "Добавить точку"
+  log_out: "Выход"

@@ -2,22 +2,22 @@
   div.row
     div.col.sm12( v-if='authenticated' )
       h5.white-text {{ user.email }}
-      button.btn( 'v-on:click'='logout' ) Logout
+      button.btn( 'v-on:click'='logout' ) {{ $t('log_out') }}
     div( v-else )
       .col.s12.login-form
         ul.tabs.indigo
           li.tab.col.s6
-            a.active.white-text( href='#login-form' )
-              | Login
+            a.active.white-text( href="#login-form" )
+              | {{ $t('devise.shared.links.sign_in') }}
           li.tab.col.s6
-            a.white-text( href='#sign-up-form' )
-              | Sign up
+            a.white-text( href="#sign-up-form" )
+              | {{ $t('devise.shared.links.sign_up') }}
       user-login
       user-register
 </template>
 <script>
   /* global $ */
-  import { mapState } from 'vuex'
+  import { mapState, mapActions, mapGetters } from 'vuex'
 
   import UserLogin from './user_login'
   import UserRegister from './user_register'
@@ -30,21 +30,18 @@
     },
     created () {
       this.$auth.fetch().then(user => {
-        this.$store.commit('login', user)
+        this.login(user)
       })
     },
     updated () {
       $(this.$el).find('.tabs').tabs()
     },
     computed: {
-      ...mapState({
-        user: state => state.auth.user
-      }),
-      authenticated () {
-        return this.user !== null
-      }
+      ...mapState(['user']),
+      ...mapGetters(['authenticated'])
     },
     methods: {
+      ...mapActions(['login']),
       logout () {
         this.$auth.logout().then(res => this.$store.commit('logout'))
       }
@@ -52,3 +49,11 @@
   }
 
 </script>
+
+<style lang="scss" scope>
+  .login-form {
+    a.white-text {
+      font-size: 12px;
+    }
+  }
+</style>

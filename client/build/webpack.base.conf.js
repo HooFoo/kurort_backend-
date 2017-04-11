@@ -75,7 +75,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'API_URL': JSON.stringify(process.env.API_URL),
-      'GMAP_KEY': JSON.stringify(process.env.GMAP_KEY)
+      'GMAP_KEY': JSON.stringify(process.env.GMAP_KEY),
+      'TRANSLATIONS_URL': JSON.stringify(`${process.env.API_URL}/i18n.js`)
     })
   ]
 }
