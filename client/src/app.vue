@@ -1,9 +1,13 @@
 <template lang="pug">
   #app
-    router-view
+    template( v-if="loading" )
+      | Loading
+    template( v-else )
+      router-view
 </template>
 <script>
   export default {
-    name: 'app'
+    name: 'app',
+    props: ['loading']
   }
 </script>

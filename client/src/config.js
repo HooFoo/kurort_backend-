@@ -16,7 +16,11 @@ Vue.use(VueGoogleMaps, {
 
 Vue.use(VueResource)
 Vue.http.interceptors.push((request, next) => {
-  next((response) => { response.body = camelize(response.body) })
+  next((response) => {
+    if (request.url !== 'translations.json') {
+      response.body = camelize(response.body)
+    }
+  })
 })
 
 Vue.use(VueAuth)

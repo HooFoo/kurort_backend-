@@ -40,5 +40,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     post 'users/auth', to: 'users/sessions#auth'
   end
+
+  get 'translations', to: 'api#translations'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

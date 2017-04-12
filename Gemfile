@@ -30,7 +30,6 @@ gem 'rack-cors'
 gem 'carrierwave'
 gem 'rmagick', '~> 2.13.1'
 gem 'pg'
-gem 'i18n-js'
 
 group :production do
   gem 'cloudinary'

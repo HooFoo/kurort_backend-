@@ -45,6 +45,10 @@
     components: {
       'user-widget': UserWidget,
       'search-box': SearchBox
+    },
+    updated () {
+      /* global $ */
+      $(this.$el).find('.collapsible').collapsible()
     }
   }
 </script>

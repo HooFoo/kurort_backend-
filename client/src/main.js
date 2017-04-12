@@ -8,17 +8,27 @@ import 'materialize-css/dist/css/materialize.min.css'
 import 'materialize-css/dist/js/materialize.min.js'
 import './assets/stylesheets/app.scss'
 
-import i18n from './i18n'
 import App from './app'
 import router from './router'
 import store from './store'
+import i18n from './i18n'
 
 /* eslint-disable no-new */
-new Vue({
+const app = new Vue({
   el: '#app',
   router,
   store,
   i18n,
-  template: '<App/>',
+  data: function () {
+    return { loading: true }
+  },
+  template: '<App :loading="loading"/>',
   components: { App }
+})
+
+Vue.http.get('translations.json').then(response => {
+  for (let lang in response.body) {
+    i18n.setLocaleMessage(lang, response.body[lang])
+  }
+  app.loading = false
 })
