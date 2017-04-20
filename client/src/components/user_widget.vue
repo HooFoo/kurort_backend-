@@ -16,26 +16,23 @@
       user-register
 </template>
 <script>
-  /* global $ */
   import { mapState, mapActions, mapGetters } from 'vuex'
 
   import UserLogin from './user_login'
   import UserRegister from './user_register'
+  import materializable from '@/mixins/materializable'
 
   export default {
     name: 'user-widget',
+    mixins: [materializable],
     components: {
       'user-login': UserLogin,
       'user-register': UserRegister
     },
     created () {
-      $(this.$el).find('.tabs').tabs()
       this.$auth.fetch().then(user => {
         this.login(user)
       })
-    },
-    updated () {
-      $(this.$el).find('.tabs').tabs()
     },
     computed: {
       ...mapState(['user']),

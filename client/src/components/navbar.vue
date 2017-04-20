@@ -24,17 +24,14 @@
 <script>
   import { mapState, mapActions } from 'vuex'
 
+  import materializable from '@/mixins/materializable'
+
   export default {
     name: 'navbar',
+    mixins: [materializable],
     computed: mapState(['langs']),
     methods: mapActions(['setLanguage', 'fetchLanguages']),
-    updated () {
-      /* global $ */
-      $('.dropdown-button').dropdown()
-    },
-    created () {
-      this.fetchLanguages()
-    }
+    created () { this.fetchLanguages() }
   }
 </script>
 <style lang="scss">

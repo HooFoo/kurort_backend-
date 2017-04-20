@@ -39,16 +39,14 @@
 <script>
   import UserWidget from './user_widget'
   import SearchBox from './search_box'
+  import materializable from '@/mixins/materializable'
 
   export default {
     name: 'sidenav',
+    mixins: [materializable],
     components: {
       'user-widget': UserWidget,
       'search-box': SearchBox
-    },
-    updated () {
-      /* global $ */
-      $(this.$el).find('.collapsible').collapsible()
     }
   }
 </script>
