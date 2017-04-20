@@ -4,7 +4,7 @@
       template( v-for="lang in langs" )
         li
           a( href="#!" v-on:click.prevent="setLanguage(lang)")
-            img( :src="lang.icon" width="16" )
+            img( v-if="lang.icon" ':src'="lang.icon" width="16" )
             | &nbsp;
             | {{ lang.name }}
     nav.top-nam.indigo

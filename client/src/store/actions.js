@@ -23,8 +23,6 @@ export const fetchLanguages = ({ commit, dispatch }) => {
   let langsList = []
   langs.get().then(response => {
     response.body.data.forEach(lang => {
-      /* global API_URL */
-      lang.attributes.icon = API_URL + lang.attributes.icon
       langsList.push({
         id: lang.id,
         ...lang.attributes

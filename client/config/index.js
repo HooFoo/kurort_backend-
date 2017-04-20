@@ -32,7 +32,7 @@ module.exports = {
         target: 'http://localhost:3001',
         changeOrigin: false,
         filter: function (pathname, req) {
-          return pathname.match('^/api|^/admin|^/assets')
+          return pathname.match('^/api|^/admin|^/assets|^/uploads')
         }
       }
     },
