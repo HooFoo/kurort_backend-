@@ -9,7 +9,7 @@ Vue.use(Vuex)
 const state = {
   user: null,
   langs: [],
-  lang: null
+  langId: null
 }
 
 export default new Vuex.Store({

@@ -3,7 +3,6 @@
     sidenav-loader( v-bind:class="{ hide: !loading }" )
     .error( v-if="hasError" ) {{ error }}
     form.user-form( v-on:submit.prevent="submit" v-bind:class="{ hide: loading }" novalidate )
-      .error( v-if="hasError") {{ errorMsg }}
       .input-field
         input#email.validate( name="email" type="text" v-model="email" )
         label( for="email" ) {{ $t('activerecord.attributes.user.email') }}
@@ -38,17 +37,14 @@
     methods: {
       ...mapActions(['login']),
       submit () {
+        let { email, password } = this
         this.loading = true
-        const data = {
-          email: this.email,
-          password: this.password
-        }
-        this.$auth.login(data).then(
-          user => {
-            this.login(user)
-          },
-          error => { this.error = error }
-        ).catch().then(() => { this.loading = false })
+        this.login({ email, password })
+        .catch(error => {
+          this.error = error
+        }).then(() => {
+          this.loading = false
+        })
       }
     }
   }

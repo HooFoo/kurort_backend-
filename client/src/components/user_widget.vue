@@ -30,19 +30,14 @@
       'user-register': UserRegister
     },
     created () {
-      this.$auth.fetch().then(user => {
-        this.login(user)
-      })
+      this.checkAuth()
     },
     computed: {
       ...mapState(['user']),
       ...mapGetters(['authenticated'])
     },
     methods: {
-      ...mapActions(['login']),
-      logout () {
-        this.$auth.logout().then(res => this.$store.commit('logout'))
-      }
+      ...mapActions(['checkAuth', 'logout'])
     }
   }
 

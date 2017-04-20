@@ -1,10 +1,5 @@
 class AttachmentShortSerializer < BaseSerializer
-  attributes :link
+  include Concerns::WithLink
 
-  def link
-    {
-        link: asset_host+object.link.url,
-        thumb: asset_host+object.link.thumb.url
-    }
-  end
+  attributes :link
 end

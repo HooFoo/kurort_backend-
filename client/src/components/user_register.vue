@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapState } from 'vuex'
   import SidenavLoader from './sidenav_loader'
 
   export default {
@@ -38,30 +38,18 @@
         }
       }
     },
-    updated () {
-      /* global Materialize */
-      Materialize.updateTextFields()
-    },
+    computed: mapState(['langId']),
     methods: {
-      ...mapActions(['login']),
+      ...mapActions(['register']),
       submit () {
-        let data = {
-          email: this.email,
-          password: this.password,
-          password_confirmation: this.passwordConfirmation,
-          lang_id: this.$store.state.lang.id
-        }
+        let { email, password, passwordConfirmation, langId } = this
         this.loading = true
-        this.$auth.register(data)
-          .then(user => {
-            this.login(user)
-          }, errors => {
-            if (errors) {
-              ['email', 'password', 'passwordConfirmation'].forEach((attr) => {
-                this.errors[attr] = errors[attr] ? errors[attr][0] : null
-              })
-            }
-          }).catch().then(() => { this.loading = false })
+        this.register({ email, password, passwordConfirmation, langId })
+          .catch(errors => {
+            ['email', 'password', 'passwordConfirmation'].forEach((attr) => {
+              this.errors[attr] = errors[attr] ? errors[attr][0] : null
+            })
+          }).then(() => { this.loading = false })
       }
     }
   }

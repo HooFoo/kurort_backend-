@@ -1,6 +1,6 @@
 export default {
   setLanguage (state, lang) {
-    state.lang = lang
+    state.langId = lang
   },
 
   setLanguages (state, langs) {

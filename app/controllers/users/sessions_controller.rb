@@ -4,7 +4,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def create
     super do |resource|
-      return render json: resource
+      return render json: resource, include: %w(user_profile lang)
     end
   end
 end

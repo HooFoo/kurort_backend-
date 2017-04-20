@@ -5,7 +5,7 @@ class PointsController < ApiController
   def index
     @points = Point.all
 
-    render json: @points
+    render json: @points, include: %w(point_type attachments comments comments.attachments user)
   end
 
   # GET /points/1

@@ -2,10 +2,10 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 
-import './config.js'
+import './config'
 window.jQuery = window.$ = require('jquery')
 import 'materialize-css/dist/css/materialize.min.css'
-import 'materialize-css/dist/js/materialize.min.js'
+import 'materialize-css/dist/js/materialize.js'
 import './assets/stylesheets/app.scss'
 
 import App from './app'

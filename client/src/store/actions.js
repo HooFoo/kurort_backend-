@@ -1,36 +1,64 @@
-import Vue from 'vue'
-import langs from '@/resources/langs'
 import i18n from '@/i18n'
+import _ from 'lodash'
+import api from '@/api'
 
-export const login = ({ commit }, user) => {
+export const setCurrentUser = ({ commit, dispatch }, user) => {
   commit('login', user)
+  localStorage.setItem('email', user.attributes.email)
+  localStorage.setItem('token', user.attributes.authenticationToken)
   if (user.attributes.lang) {
-    i18n.locale = user.attributes.lang.key
-    commit('setLanguage', user.attributes.lang)
+    dispatch('setLanguage', user.attributes.lang.id)
   }
 }
 
-export const setLanguage = ({ state, commit, getters }, lang) => {
-  i18n.locale = lang.key
-  commit('setLanguage', lang)
-  if (getters.authenticated && state.user.lang && state.user.lang.id !== lang.id) {
-    commit('setUserLang', lang)
-    Vue.http.put('users', { user: { lang: lang } })
+export const setLanguage = ({ state, commit, getters }, langId) => {
+  commit('setLanguage', langId)
+  i18n.locale = getters.currentLang.attributes.key
+  if (getters.authenticated && (!state.user.lang || state.user.lang.id !== langId)) {
+    commit('setUserLang', getters.currentLang)
+    api.saveUser(state.user)
   }
 }
 
 export const fetchLanguages = ({ commit, dispatch }) => {
-  let langsList = []
-  langs.get().then(response => {
-    response.body.data.forEach(lang => {
-      langsList.push({
-        id: lang.id,
-        ...lang.attributes
-      })
-    })
-    commit('setLanguages', langsList)
-    if (langsList.length > 0) {
-      dispatch('setLanguage', langsList[0])
+  api.langs.get({ responseType: 'json' }).then(response => {
+    commit('setLanguages', response.body.langs)
+    if (!_.isEmpty(response.body.langs)) {
+      dispatch('setLanguage', _.first(_.keys(response.body.langs)))
     }
+  })
+}
+
+export const login = function ({ dispatch }, credentials) {
+  return api.login({ user: credentials })
+    .then(users => {
+      dispatch('setCurrentUser', _.first(_.values(users)))
+    })
+}
+
+export const logout = function ({ dispatch }) {
+  return api.logout().then(() => {
+    dispatch('clearAuth')
+  })
+}
+
+export const clearAuth = ({ commit }) => {
+  commit('logout')
+  localStorage.setItem('email', null)
+  localStorage.setItem('token', null)
+}
+
+export const register = function ({ dispatch }, data) {
+  return api.register({ user: data })
+    .then(users => {
+      dispatch('setCurrentUser', _.first(_.values(users)))
+    })
+}
+
+export const checkAuth = function ({ dispatch }) {
+  return api.checkAuth().then(users => {
+    dispatch('setCurrentUser', _.first(_.values(users)))
+  }).catch(() => {
+    dispatch('clearAuth')
   })
 }

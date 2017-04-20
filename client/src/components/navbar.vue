@@ -1,12 +1,12 @@
 <template lang="pug">
   header
     ul#langs-dropdown.dropdown-content
-      template( v-for="lang in langs" )
+      template( v-for="lang, id in langs" )
         li
-          a( href="#!" v-on:click.prevent="setLanguage(lang)")
-            img( v-if="lang.icon" ':src'="lang.icon" width="16" )
+          a( href="#!" v-on:click.prevent="setLanguage(id)")
+            img( v-if="lang.attributes.icon" ':src'="lang.attributes.icon" width="16" )
             | &nbsp;
-            | {{ lang.name }}
+            | {{ lang.attributes.name }}
     nav.top-nam.indigo
       .container
         .nav-wrapper
@@ -31,7 +31,9 @@
     mixins: [materializable],
     computed: mapState(['langs']),
     methods: mapActions(['setLanguage', 'fetchLanguages']),
-    created () { this.fetchLanguages() }
+    created () {
+      this.fetchLanguages()
+    }
   }
 </script>
 <style lang="scss">

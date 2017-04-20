@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
   def current
     @user = current_user
-    render json: @user, include: '*'
+    return render json: @user, include: '*' if @user
+    render json: {}, status: :unauthorized
   end
 
   def info
