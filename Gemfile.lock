@@ -127,6 +127,7 @@ GEM
     hashie (3.4.6)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
+    http_accept_language (2.1.0)
     i18n (0.8.1)
     inherited_resources (1.7.0)
       actionpack (>= 3.2, < 5.1)
@@ -282,6 +283,7 @@ DEPENDENCIES
   devise-i18n
   dotenv-rails
   foreman
+  http_accept_language
   letter_opener
   listen (~> 3.0.5)
   omniauth

@@ -1,4 +1,5 @@
 class ApiController < ActionController::API
+  include HttpAcceptLanguage::AutoLocale
   acts_as_token_authentication_handler_for User, fallback: :none
   before_action :set_locale
 

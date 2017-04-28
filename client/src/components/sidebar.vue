@@ -42,7 +42,7 @@
   import materializable from '@/mixins/materializable'
 
   export default {
-    name: 'sidenav',
+    name: 'sidebar',
     mixins: [materializable],
     components: {
       'user-widget': UserWidget,
