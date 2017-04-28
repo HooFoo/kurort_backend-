@@ -5,7 +5,8 @@
     template( v-else )
       navbar
       sidebar
-      router-view
+      .page-container
+        router-view
 </template>
 <script>
   import i18n from './i18n'
@@ -30,3 +31,11 @@
     }
   }
 </script>
+
+<style lang="scss">
+  @media (min-width: 993px) {
+    .page-container {
+      padding-left: 300px;
+    }
+  }
+</style>

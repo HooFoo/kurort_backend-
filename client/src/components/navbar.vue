@@ -13,7 +13,7 @@
           a.button-collapse.top-nav.full.hide-on-large-only(href="#" data-activates="nav-mobile")
             i.material-icons
               | menu
-          a.page-title
+          router-link.page-title( to="/" )
             | Kurort
           ul.right
             li

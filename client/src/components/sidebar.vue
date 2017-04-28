@@ -1,7 +1,6 @@
 <template lang="pug">
   ul#nav-mobile.side-nav.fixed
-    li.user-panel.parent-list-item
-      div.indigo
+    li.user-panel.parent-list-item.indigo
         user-widget
         search-box
     li.parent-list-item

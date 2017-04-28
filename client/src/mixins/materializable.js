@@ -13,4 +13,5 @@ const materalizeEl = function (el) {
   $el.find('.collapsible').collapsible()
   $el.find('.tabs').tabs()
   $el.find('.dropdown-button').dropdown()
+  $el.find('.button-collapse').sideNav()
 }
