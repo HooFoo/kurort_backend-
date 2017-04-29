@@ -10,10 +10,10 @@ class Point < ApplicationRecord
   end
 
   def self.get_rect(rect) #GET RECT 4:20 LMAO
-    where("lat <= #{rect['ne']['lat']} and " +
-          "lat >= #{rect['sw']['lat']} and " +
-          "lng <= #{rect['ne']['lng']} and " +
-          "lng >= #{rect['sw']['lng']}")
+    where("lat <= ? and lat >= ? and lng <= ? and lng >= ?", rect['ne']['lat'],
+                                                             rect['sw']['lat'],
+                                                             rect['ne']['lng'],
+                                                             rect['sw']['lng'])
   end
 
 

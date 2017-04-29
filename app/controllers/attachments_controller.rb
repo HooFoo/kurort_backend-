@@ -1,4 +1,4 @@
-class AttachmentsController < ApplicationController
+class AttachmentsController < ApiController
   before_action :set_attachment, only: [:show, :update, :destroy]
 
   # GET /attachments

@@ -13,6 +13,9 @@ import App from './app'
 import router from './router'
 import store from './store'
 import i18n from './i18n'
+import api from './api'
+
+Vue.prototype.$api = api
 
 /* eslint-disable no-new */
 new Vue({
