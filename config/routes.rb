@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       collection do
         get 'user_points/:user_id', action: 'user_points'
         get 'my_points', action: 'my_points'
-        post 'in', action: 'points_in_rect'
+        get 'in', action: 'points_in_rect'
       end
     end
     resources :langs

@@ -6,7 +6,6 @@
           map-marker( ':point'= "point" )
 </template>
 <script>
-  import _ from 'lodash'
   import MapMarker from './map_marker'
 
   export default {
@@ -42,20 +41,9 @@
               lng: bounds.getNorthEast().lng()
             }
           }
-          this.$api.points.forRect({}, { rect: parsed })
+          this.$api.points.forRect({ rect: parsed })
             .then(response => {
-              this.points = []
-              _.each(_.values(response.body.points), point => {
-                let mapped = {
-                  id: point.id,
-                  position: {
-                    lat: point.attributes.lat,
-                    lng: point.attributes.lng
-                  },
-                  icon: point.attributes.pointType.icon.url
-                }
-                this.points.push(mapped)
-              })
+              this.points = response.body.points
             }).catch(response => { console.log(response) })
         }
       }

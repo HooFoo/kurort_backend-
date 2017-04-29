@@ -9,7 +9,7 @@ const CURRENT_USER_URL = 'users/current'
 export default {
   points: Vue.resource('points{/id}', {}, {
     my: { method: 'GET', url: 'points/my' },
-    forRect: { method: 'POST', url: 'points/in' }
+    forRect: { method: 'GET', url: 'points/in' }
   }),
 
   langs: Vue.resource('langs{/id}'),
