@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import _ from 'lodash'
 import VueResource from 'vue-resource'
 import normalize from 'json-api-normalizer'
 import humps from 'humps'
@@ -13,9 +14,9 @@ Vue.http.interceptors.push((request, next) => {
     request.headers.set('X-User-Token', token)
   }
   request.headers.set('Accept-Language', i18n.locale)
-  if (request.body) {
-    request.body = humps.decamelizeKeys(request.body)
-  }
+  _.each(['params', 'body'], (key) => {
+    request[key] = humps.decamelizeKeys(request[key])
+  })
   next((response) => {
     if (request.url !== 'translations.json') {
       if (response.body !== null) {

@@ -32,14 +32,10 @@
         let bounds = this.$refs.map.$mapObject.getBounds()
         if (bounds) {
           let parsed = {
-            sw: {
-              lat: bounds.getSouthWest().lat(),
-              lng: bounds.getSouthWest().lng()
-            },
-            ne: {
-              lat: bounds.getNorthEast().lat(),
-              lng: bounds.getNorthEast().lng()
-            }
+            swLat: bounds.getSouthWest().lat(),
+            swLng: bounds.getSouthWest().lng(),
+            neLat: bounds.getNorthEast().lat(),
+            neLng: bounds.getNorthEast().lng()
           }
           this.$api.points.forRect({ rect: parsed })
             .then(response => {

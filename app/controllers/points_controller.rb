@@ -58,19 +58,22 @@ class PointsController < ApiController
   end
 
   def points_in_rect
-    rect = params[:rect]
-    @points = Point.get_rect(rect)
+    @points = Point.get_rect(rect_params.to_h)
     render json: @points
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_point
-      @point = Point.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def point_params
-      params.require(:point).permit(:user_id, :lat, :lng, :name, :description, :options)
-    end
+  def set_point
+    @point = Point.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def point_params
+    params.require(:point).permit(:user_id, :lat, :lng, :name, :description, :options)
+  end
+
+  def rect_params
+    params.require(:rect).permit(:sw_lat, :sw_lng, :ne_lat, :ne_lng)
+  end
 end
