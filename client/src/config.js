@@ -6,7 +6,7 @@ Vue.use(VueGoogleMaps, {
   load: {
     /* global GMAP_KEY */
     key: GMAP_KEY,
-    v: '3.26',
+    v: '3.27',
     libraries: 'weather,geometry,visualization'
   }
 })

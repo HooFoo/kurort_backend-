@@ -15,7 +15,7 @@
           div.collapsible-body
             ul
               li
-                a( href="#" )
+                a( href="#" v-on:click.prevent="toCurrentPosition" )
                   i.material-icons my_location
                   | {{ $t('my_position') }}
               li
@@ -39,6 +39,7 @@
   import UserWidget from './user_widget'
   import SearchBox from './search_box'
   import materializable from '@/mixins/materializable'
+  import { EventBus } from '../event_bus'
 
   export default {
     name: 'sidebar',
@@ -46,6 +47,11 @@
     components: {
       'user-widget': UserWidget,
       'search-box': SearchBox
+    },
+    methods: {
+      toCurrentPosition () {
+        EventBus.$emit('toCurrentPosition')
+      }
     }
   }
 </script>

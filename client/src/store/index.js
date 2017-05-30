@@ -9,7 +9,9 @@ Vue.use(Vuex)
 const state = {
   user: null,
   langs: [],
-  langId: null
+  langId: null,
+  mapCenter: { lat: 55.75370903771494, lng: 37.61981338262558 },
+  userPosition: { lat: 55.75370903771494, lng: 37.61981338262558 }
 }
 
 export default new Vuex.Store({

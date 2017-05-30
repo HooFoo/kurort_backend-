@@ -17,6 +17,13 @@ import api from './api'
 
 Vue.prototype.$api = api
 
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(position => {
+    store.commit('setMapCenter', { lat: position.coords.latitude, lng: position.coords.longitude })
+    store.commit('setUserPosition', { lat: position.coords.latitude, lng: position.coords.longitude })
+  })
+}
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

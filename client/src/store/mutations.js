@@ -22,5 +22,15 @@ export default {
 
   logout (state) {
     state.user = null
+  },
+
+  setMapCenter (state, center) {
+    state.mapCenter.lat = center.lat
+    state.mapCenter.lng = center.lng
+  },
+
+  setUserPosition (state, center) {
+    state.userPosition.lat = center.lat
+    state.userPosition.lng = center.lng
   }
 }
