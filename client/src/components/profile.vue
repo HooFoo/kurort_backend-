@@ -1,0 +1,47 @@
+<template lang="pug">
+  content-page
+    h3 Edit your profile
+    form.user-form( "v-on:submit.prevent"="submit" v-bind:class="{ hide: loading }" novalidate )
+      .input-field
+        input#email.user-form-input( name="email", type="text" v-model="email" v-bind:class="{ invalid: errors.email }" )
+        label( for="email" v-bind:data-error="errors.email" ) {{ $t('activerecord.attributes.user.email') }}
+      .input-field
+        input#password.user-form-input( name="password", type="password" v-model="password" v-bind:class="{ invalid: errors.password }" )
+        label( for="password" v-bind:data-error="errors.password" ) {{ $t('activerecord.attributes.user.password') }}
+      .input-field
+        input#password_confirmation.user-form-input( name="password_confirmation" type="password" v-model="passwordConfirmation" v-bind:class="{ invalid: errors.passwordConfirmation }" )
+        label( for="password_confirmation" v-bind:data-error="errors.passwordConfirmation" )
+          | {{ $t('activerecord.attributes.user.password_confirmation') }}
+      input.btn( type="submit" value="Update" )
+</template>
+
+<script>
+  import ContentPage from './content_page'
+
+  export default {
+    name: 'profile',
+    components: {
+      'content-page': ContentPage
+    },
+    data () {
+      return {
+        email: '',
+        password: '',
+        passwordConfirmation: '',
+        loading: false,
+        errors: {
+          username: null,
+          email: null,
+          password: null,
+          passwordConfirmation: null
+        }
+      }
+    }
+  }
+</script>
+
+<style lang="scss">
+  .user-form {
+    width: 70%;
+  }
+</style>

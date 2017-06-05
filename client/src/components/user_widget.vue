@@ -1,7 +1,7 @@
 <template lang="pug">
   div.row
     div.col.sm12( v-if='authenticated' )
-      h5.white-text {{ user.email }}
+      router-link( to='/profile' ) {{ user.email }}
       button.btn( 'v-on:click'='logout' ) {{ $t('log_out') }}
     div( v-else )
       .col.s12.login-form
