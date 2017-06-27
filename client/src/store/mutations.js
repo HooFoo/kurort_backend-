@@ -32,5 +32,13 @@ export default {
   setUserPosition (state, center) {
     state.userPosition.lat = center.lat
     state.userPosition.lng = center.lng
+  },
+
+  checkingAuth (state) {
+    state.authentication = true
+  },
+
+  authChecked (state) {
+    state.authentication = false
   }
 }

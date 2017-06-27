@@ -1,5 +1,5 @@
 <template lang="pug">
-  content-page
+  content-page( v-bind:authenticate="true" )
     h3 Edit your profile
     form.user-form( "v-on:submit.prevent"="submit" v-bind:class="{ hide: loading }" novalidate )
       .input-field

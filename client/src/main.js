@@ -10,6 +10,7 @@ import 'materialize-css/dist/js/materialize.js'
 import './assets/stylesheets/app.scss'
 
 import App from './app'
+import ContentPage from '@/components/content_page'
 import router from './router'
 import store from './store'
 import i18n from './i18n'
@@ -31,5 +32,5 @@ new Vue({
   store,
   i18n,
   template: '<App/>',
-  components: { App }
+  components: { App, ContentPage }
 })

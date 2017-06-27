@@ -8,6 +8,7 @@ Vue.use(Vuex)
 
 const state = {
   user: null,
+  authentication: true,
   langs: [],
   langId: null,
   mapCenter: { lat: 55.75370903771494, lng: 37.61981338262558 },

@@ -61,10 +61,13 @@ export const register = function ({ dispatch }, data) {
     })
 }
 
-export const checkAuth = function ({ dispatch }) {
+export const checkAuth = function ({ dispatch, commit }) {
+  commit('checkingAuth')
   return api.checkAuth().then(users => {
     dispatch('setCurrentUser', _.first(_.values(users)))
   }).catch(() => {
     dispatch('clearAuth')
+  }).then(() => {
+    commit('authChecked')
   })
 }
