@@ -1,15 +1,21 @@
 <template lang="pug">
-  content-page( v-bind:authenticate="true" )
+  content-page( v-bind:authenticate="true" v-bind:loading="loading" )
     h3 Edit your profile
     form.user-form( "v-on:submit.prevent"="submit" v-bind:class="{ hide: loading }" novalidate )
-      .input-field
-        input#email.user-form-input( name="email", type="text" v-model="email" v-bind:class="{ invalid: errors.email }" )
+      .input-field.col.s6
+        input#email.validate( name="email" v-model="email" v-bind:class="{ invalid: errors.email }" )
         label( for="email" v-bind:data-error="errors.email" ) {{ $t('activerecord.attributes.user.email') }}
       .input-field
-        input#password.user-form-input( name="password", type="password" v-model="password" v-bind:class="{ invalid: errors.password }" )
+        input#password( name="password"
+                        type="password"
+                        v-model="password"
+                        v-bind:class="{ invalid: errors.password }" )
         label( for="password" v-bind:data-error="errors.password" ) {{ $t('activerecord.attributes.user.password') }}
       .input-field
-        input#password_confirmation.user-form-input( name="password_confirmation" type="password" v-model="passwordConfirmation" v-bind:class="{ invalid: errors.passwordConfirmation }" )
+        input#password_confirmation( name="password_confirmation"
+                                                     type="password"
+                                                     v-model="passwordConfirmation"
+                                                     v-bind:class="{ invalid: errors.passwordConfirmation }" )
         label( for="password_confirmation" v-bind:data-error="errors.passwordConfirmation" )
           | {{ $t('activerecord.attributes.user.password_confirmation') }}
       input.btn( type="submit" value="Update" )
@@ -17,6 +23,7 @@
 
 <script>
   import ContentPage from './content_page'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'profile',
@@ -25,7 +32,6 @@
     },
     data () {
       return {
-        email: '',
         password: '',
         passwordConfirmation: '',
         loading: false,
@@ -36,6 +42,17 @@
           passwordConfirmation: null
         }
       }
+    },
+    computed: {
+      ...mapState(['user']),
+      email () {
+        return this.user ? this.user.email : ''
+      }
+    },
+    submit () {
+//      let email = this.user.email
+//      let { password, passwordConfirmation } = this
+
     }
   }
 </script>

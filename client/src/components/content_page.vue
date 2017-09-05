@@ -1,6 +1,6 @@
 <template lang="pug">
   transition( name="slide" )
-    div.content-page( v-if="checkingAuth" )
+    div.content-page.loading( v-if="checkingAuth || loading" )
       .loader.center-align
         .preloader-wrapper.active
           .spinner-layer.spinner-green-only
@@ -13,7 +13,7 @@
     template( v-else )
       div.content-page( v-if="unauthorized" )
         | You are not authorized to see this page
-      div.content-pate( v-else )
+      div.content-page( v-else )
         router-link.close( to='/' ) ×
         slot
 </template>
@@ -22,7 +22,7 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    props: ['authenticate'],
+    props: ['authenticate', 'loading'],
     computed: {
       ...mapGetters(['authenticated']),
       checkingAuth: function () {
@@ -39,12 +39,21 @@
   .content-page {
     position: relative;
     padding-left: 10px;
+    width: 100%;
+    height: 100%;
 
-    .close {
+    &.loading {
+      position: flex-grid(center);
+      .loader.center-align {
+        padding-left: 300px;
+      }
+    }
+
+    a.close {
       position: absolute;
-      top: 0;
+      top: -5px;
+      right: 15px;
       line-height: 12px;
-      right: 5px;
       font-size: 26px;
     }
   }

@@ -11,6 +11,7 @@ gem 'devise-i18n'
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 gem 'omniauth'
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+gem 'active_skin'
 
 gem 'active_model_serializers', '~> 0.10.0.rc1'
 

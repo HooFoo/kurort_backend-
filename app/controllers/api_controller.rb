@@ -5,7 +5,7 @@ class ApiController < ActionController::API
   before_action :set_locale
 
   def translations
-    render json: I18n.backend.send(:translations).to_json
+    render js: "var TRANSLATIONS = #{I18n.backend.send(:translations).to_json};"
   end
 
   protected
