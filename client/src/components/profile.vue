@@ -2,9 +2,9 @@
   content-page( v-bind:authenticate="true" v-bind:loading="loading" )
     h3 Edit your profile
     form.user-form( "v-on:submit.prevent"="submit" v-bind:class="{ hide: loading }" novalidate )
-      .input-field.col.s6
-        input#email.validate( name="email" v-model="email" v-bind:class="{ invalid: errors.email }" )
-        label( for="email" v-bind:data-error="errors.email" ) {{ $t('activerecord.attributes.user.email') }}
+      .input-field
+        input#email.validate( name="email" v-model="email" v-bind:class="{ invalid: errors.email }" type="text")
+        label.active( for="email" v-bind:data-error="errors.email" ) {{ $t('activerecord.attributes.user.email') }}
       .input-field
         input#password( name="password"
                         type="password"
@@ -18,18 +18,20 @@
                                                      v-bind:class="{ invalid: errors.passwordConfirmation }" )
         label( for="password_confirmation" v-bind:data-error="errors.passwordConfirmation" )
           | {{ $t('activerecord.attributes.user.password_confirmation') }}
-      input.btn( type="submit" value="Update" )
+      btn.btn( type="submit" ) {{ $t('save') }}
 </template>
 
 <script>
   import ContentPage from './content_page'
   import { mapState } from 'vuex'
+  import materializable from '../mixins/materializable'
 
   export default {
     name: 'profile',
     components: {
       'content-page': ContentPage
     },
+    mixins: [materializable],
     data () {
       return {
         password: '',

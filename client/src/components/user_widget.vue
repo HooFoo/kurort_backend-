@@ -1,8 +1,15 @@
 <template lang="pug">
   div.row
-    div.col.sm12( v-if='authenticated' )
-      router-link( to='/profile' ) {{ user.email }}
-      button.btn( 'v-on:click'='logout' ) {{ $t('log_out') }}
+    div.user-nav( v-if='authenticated' )
+      ul#user_dropdown.dropdown-content
+        li
+          router-link( to="/profile" ) {{ $t('user.edit') }}
+        li
+          a( v-on:click.prevent="logout" ) {{ $t('log_out') }}
+      a.dropdown-button.btn.indigo( href="#" data-activates="user_dropdown" )
+        | {{ user.email }}
+        i.material-icons.right arrow_drop_down
+      //button.btn( 'v-on:click'='logout' ) {{ $t('log_out') }}
     div( v-else )
       .col.s12.login-form
         ul.tabs.indigo
@@ -48,5 +55,8 @@
     a.white-text {
       font-size: 12px;
     }
+  }
+  .user-nav .btn {
+    width: 100%;
   }
 </style>

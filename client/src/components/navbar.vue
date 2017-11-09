@@ -7,13 +7,13 @@
             img( v-if="lang.attributes.icon" ':src'="lang.attributes.icon" width="16" )
             | &nbsp;
             | {{ lang.attributes.name }}
-    nav.top-nam.indigo
+    nav.top-nav.indigo
       .container
         .nav-wrapper
-          a.button-collapse.top-nav.full.hide-on-large-only(href="#" data-activates="nav-mobile")
+          a.button-collapse.top-nav.full.hide-on-large-only( href="#" data-activates="nav-mobile" )
             i.material-icons
               | menu
-          router-link.page-title( to="/" )
+          router-link.brand-logo( to="/" )
             | Kurort
           ul.right
             li
@@ -36,8 +36,3 @@
     }
   }
 </script>
-<style lang="scss">
-  .nav-wrapper {
-    text-align: center;
-  }
-</style>

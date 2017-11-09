@@ -25,3 +25,6 @@ ru:
   my_position: "Моя позиция"
   add_point: "Добавить точку"
   log_out: "Выход"
+  save: 'Сохранить'
+  user:
+    edit: 'Редактировать'

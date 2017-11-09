@@ -7,4 +7,8 @@ class Users::SessionsController < Devise::SessionsController
       return render json: resource, include: %w(user_profile lang)
     end
   end
+
+  def respond_to_on_destroy
+    head :no_content
+  end
 end
